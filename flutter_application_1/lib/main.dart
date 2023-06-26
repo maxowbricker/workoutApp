@@ -12,8 +12,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.green,
+        ).copyWith(
+          brightness: Brightness.dark,
+          secondary: Colors.white,
+        ),
+        scaffoldBackgroundColor: Colors.black,
       ),
       home: const MyHomePage(),
     );
@@ -45,13 +50,21 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Max Bricker Workout Application!'),
+        title: Text(
+          _getTitle(),
+          style: Theme.of(context).textTheme.headline6!.copyWith(
+                color: Colors.white,
+              ),
+        ),
+        backgroundColor: Colors.black,
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
+        backgroundColor: Colors.black,
+        showSelectedLabels: false, // Hide the labels for selected items
+        showUnselectedLabels: false, // Hide the labels for unselected items
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -59,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
-            label: 'Add',
+            label: 'Start Workout',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -69,16 +82,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  String _getTitle() {
+    switch (_currentIndex) {
+      case 0:
+        return 'Home';
+      case 1:
+        return 'Start Workout!';
+      case 2:
+        return 'Settings';
+      default:
+        return '';
+    }
+  }
 }
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Home Page',
-        style: Theme.of(context).textTheme.headline4,
-      ),
     );
   }
 }
@@ -87,10 +109,6 @@ class AddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Add Page',
-        style: Theme.of(context).textTheme.headline4,
-      ),
     );
   }
 }
@@ -99,10 +117,6 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Settings Page',
-        style: Theme.of(context).textTheme.headline4,
-      ),
     );
   }
 }

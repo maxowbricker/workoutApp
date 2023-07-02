@@ -6,12 +6,14 @@ class Exercise {
   Exercise(this.name, this.repCount, this.setCount);
 }
 
-class workoutSession {
+class WorkoutSession {
   String name;
   final List<Exercise> exercises;
-  int time;
+  int duration;
+  DateTime time = DateTime.now();
 
-  workoutSession(this.name, this.exercises, this.time);
+
+  WorkoutSession(this.name, this.exercises, this.duration);
 
   void addExercise(Exercise exercise) {
     exercises.add(exercise);
@@ -22,6 +24,6 @@ class workoutSession {
   }
 
   void incrementTime() {
-    time++;
+    duration++;
   }
 }

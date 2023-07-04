@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'workout_session.dart';
+import 'file_classes.dart';
 
 
 void main() {
+  loadData();
   runApp(const MyApp());
+}
+// This method will load in the data that exists within the SQL database, eg, previous workouts
+void loadData() {
+
 }
 
 class MyApp extends StatelessWidget {

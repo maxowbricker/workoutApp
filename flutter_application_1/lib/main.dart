@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'file_classes.dart';
 
 
 void main() {
@@ -12,7 +11,7 @@ void loadData() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({super.key, Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key});
+  const MyHomePage({super.key, Key? key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -42,9 +41,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    HomePage(),
-    AddPage(),
-    SettingsPage(),
+    const HomePage(),
+    const AddPage(),
+    const SettingsPage(),
   ];
 
   void _onTabTapped(int index) {
@@ -59,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(
           _getTitle(),
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: Colors.white,
               ),
         ),
@@ -105,6 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -113,6 +114,8 @@ class HomePage extends StatelessWidget {
 }
 
 class AddPage extends StatelessWidget {
+  const AddPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -144,6 +147,8 @@ class AddPage extends StatelessWidget {
 
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Center(
